@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Page not found</title>
+		<script>
+			// GitHub Pages project paths are case-sensitive (/PclToon/ works, /pcltoon/ 404s).
+			// Send case variants of a known project path to the canonical spelling,
+			// keeping the rest of the path, the query and the hash.
+			(function () {
+				var PROJECTS = ['PclToon'];
+				var path = location.pathname;
+				for (var i = 0; i < PROJECTS.length; i++) {
+					var base = '/' + PROJECTS[i];
+					var head = path.slice(0, base.length);
+					var next = path.charAt(base.length);
+					if (head !== base && head.toLowerCase() === base.toLowerCase() && (next === '' || next === '/')) {
+						location.replace(base + (path.slice(base.length) || '/') + location.search + location.hash);
+						return;
+					}
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<h1>페이지를 찾을 수 없습니다</h1>
+		<p><a href="/">홈으로</a></p>
+	</body>
+</html>
